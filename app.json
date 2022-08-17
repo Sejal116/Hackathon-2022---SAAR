@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "hackathon-final",
+    "slug": "snack-8b2f9067-4859-41a6-9681-6e1b7c87715e",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "description": "In class 57, you learned about “Switch Navigation”. You coded for a multi-screen app where you could press a button to navigate to a different screen. You also learned how to pass data from one screen to another screen using props\n\nIn this project, you will apply your learning to create a Newsletter App, which will contain multiple screens and users can click on different buttons to get to different screens."
+  }
+}
