@@ -14,7 +14,7 @@ The app integrates features such as a **Pomodoro timer, mood tracker, planner ca
 
 ## Key Highlights
 
-- Built the **core flow**, including timetable creation and editing, in [X hours/days]  
+- Built the **core flow**, including timetable creation and editing, in 12 HOURS 
 - Designed UI and logic for **dynamic schedule conflict detection and notifications**  
 - Next Steps:  
   - Integrate calendar syncing with **Google / Outlook**  
