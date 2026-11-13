@@ -12,9 +12,17 @@ Built with React Native and Expo (JavaScript).
 
 ## Hackathon result
 
-This app was built for the Synthacks Hackathon 2022 at Greenwood High International School, Bangalore, held on 17 and 18 August 2022. It won **1st place** and the high school trophy, and the school awarded a Certificate of Merit for 1st place, dated 18 August 2022.
+This app was built for the Synthacks Hackathon 2022 at Greenwood High International School, Bangalore, held on 17 and 18 August 2022. It won **1st place** in the high school category.
 
-![Synthacks 2022 trophy and certificates](assets/synthacks-1st-place.jpg)
+| Award | Details |
+|-------|---------|
+| Trophy | 1st Place, High School, Synthacks Hackathon 2022 |
+| Certificate of Merit | 1st place in Synthacks Hackathon 2022, awarded to Sejal Gupta of Standard 9, dated 18 August 2022 |
+| Participation Certificate | Participated in the Greenwood High Synthacks Hackathon 2022, held on 17 and 18 August 2022 |
+
+| Trophy | Participation Certificate | Certificate of Merit |
+|--------|---------------------------|----------------------|
+| ![Trophy](assets/synthacks-trophy.jpg) | ![Participation certificate](assets/synthacks-participation-certificate.jpg) | ![Certificate of merit](assets/synthacks-merit-certificate.jpg) |
 
 ## Features
 
