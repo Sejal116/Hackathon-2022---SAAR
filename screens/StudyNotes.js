@@ -1,13 +1,10 @@
 import React from 'react';
-import { View, Image, TouchableOpacity, Text, StyleSheet, SafeAreaView, TextInput} from 'react-native';
-import InputScrollView from 'react-native-input-scroll-view';
-//import all the components we are  to use
-
+import { View, Image, TouchableOpacity, Text, StyleSheet, TextInput } from 'react-native';
 
 export default class StudyNotes extends React.Component {
   render() {
     return (
-      <View>    
+      <View style={styles.container}>
         <TouchableOpacity
           onPress={() => {
             this.props.navigation.navigate('HomeScreen');
@@ -18,50 +15,44 @@ export default class StudyNotes extends React.Component {
           />
         </TouchableOpacity>
         <Text style={styles.head}>My Notes</Text>
-        <Text style={styles.textStyle}>
-        </Text>
-        <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.container}>
         <TextInput
           style={styles.input}
+          multiline={true}
+          placeholder="Type your notes here"
         />
-        <Text style={{color: 'blue'}}>}</Text>
-      </View>
-    </SafeAreaView>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  textstyle: {
-    fontSize: 20,
-    textAlign: 'left',
-    fontWeight: 'bold',
-    marginTop: 20
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
   },
   back: {
     width: 30,
     height: 30,
-    marginBottom: 50
+    marginTop: 40,
+    marginLeft: 10,
+    marginBottom: 28,
   },
   head: {
     textAlign: 'center',
-    fontSize: 50,
-    color:'black',
+    fontSize: 40,
+    color: 'black',
     fontWeight: 'bold',
-    backgroundColor: "lightpink",
+    backgroundColor: 'lightpink',
     marginBottom: 10,
-    marginTop: -30
   },
-    input: {
-    width: 400,
+  input: {
+    width: '90%',
     height: 400,
     padding: 10,
     marginTop: 20,
-    marginBottom: 10,
-    fontFamily: "Monospace",
+    alignSelf: 'center',
+    textAlignVertical: 'top',
     backgroundColor: '#e8e8e8',
-    fontSize: 20
-  }
+    fontSize: 20,
+  },
 });
