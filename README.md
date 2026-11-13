@@ -6,9 +6,15 @@ Built with React Native and Expo (JavaScript).
 
 ## Screenshots
 
-| Home | Planner |
-|------|---------|
-| ![Home](assets/screenshot.png) | ![Planner](timetable.png) |
+The app uses a navy planner design with script headings and pink grid cards.
+
+| Home | Planner | Study Notes |
+|------|---------|-------------|
+| ![Home](assets/screens/home.png) | ![Planner](assets/screens/planner.png) | ![Study Notes](assets/screens/study-notes.png) |
+
+| Focus | Tips | Credits |
+|-------|------|---------|
+| ![Focus](assets/screens/focus.png) | ![Tips](assets/screens/tips.png) | ![Credits](assets/screens/credits.png) |
 
 ## Hackathon result
 
@@ -26,11 +32,11 @@ This app was built for the Synthacks Hackathon 2022 at Greenwood High Internatio
 
 ## Features
 
-- **Home:** five buttons leading to each section of the app.
-- **Planner:** a Monday to Friday weekly timetable view with colour-coded class blocks. Tapping a block shows its details. The timetable currently shows sample data.
-- **Study Notes:** a plain text pad for quick notes.
+- **Home:** an index page with five sections, styled like a planner contents page.
+- **Planner:** a weekly planner with a card for each day, plus a Weekly Priorities box. Tapping a class shows its time and room. The classes shown are sample data.
+- **Study Notes:** an essay planner page with boxes for subject, word count, due date, key points, title, introduction, three body paragraphs and a conclusion.
+- **Focus:** a Pomodoro timer with 25 minute focus sessions and 5 minute breaks, with start, pause and reset, and a count of finished sessions.
 - **Tips:** ten study techniques, including spaced repetition, the Pomodoro technique and PQ4R.
-- **Focus:** screen reserved for a focus timer (not built yet).
 - **Credits:** names the app and website teams. The app was made by Sejal Gupta and Arjun Kulkarni.
 
 ## Setup
@@ -49,22 +55,25 @@ Scan the QR code with Expo Go (Android) or the Camera app (iOS). The app targets
 ## How it works
 
 ```
-App.js              switch navigator that links all screens
+App.js              loads the fonts and links all screens with a switch navigator
+theme.js            shared colours, fonts and title shadow
+components/
+  Header.js         back button and page title
 screens/
-  HomeScreen.js     menu with five buttons
-  Planner.js        weekly timetable (react-native-timetable), sample events array
-  StudyNotes.js     multiline text input
+  HomeScreen.js     index page with five buttons
+  Planner.js        weekly planner, sample SCHEDULE array
+  StudyNotes.js     essay planner with text boxes
+  Focus.js          Pomodoro timer
   Tips.js           list of ten study techniques
-  Focus.js          placeholder for the timer
   Credits.js        credits screen
+assets/fonts/       Caprasimo, Great Vibes and Lora
 ```
 
-Navigation uses `createSwitchNavigator` from react-navigation. Each screen is a React class component, and the Planner reads an array of events, each with a title, start time, end time and location.
+Navigation uses `createSwitchNavigator` from react-navigation. Every screen is a React class component. The Focus screen keeps its countdown in component state and updates it once a second with `setInterval`.
 
 ## Limitations and next steps
 
-- Timetable entries are hard-coded. Next step: let users add, edit and delete classes, and save them on the device.
-- Notes are not saved between sessions. Next step: store them with AsyncStorage.
-- Add the Pomodoro timer on the Focus screen.
+- The Planner classes are hard-coded. Next step: let users add, edit and delete classes, and save them on the device.
+- Notes and priorities are not saved between sessions. Next step: store them with AsyncStorage.
 - Add clash detection between overlapping classes and reminder notifications.
 - Add calendar sync with Google and Outlook.
