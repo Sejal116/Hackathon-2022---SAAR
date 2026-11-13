@@ -37,7 +37,7 @@ This app was built for the Synthacks Hackathon 2022 at Greenwood High Internatio
 - **Study Notes:** an essay planner page with boxes for subject, word count, due date, key points, title, introduction, three body paragraphs and a conclusion.
 - **Focus:** a Pomodoro timer with 25 minute focus sessions and 5 minute breaks, with start, pause and reset, and a count of finished sessions.
 - **Tips:** ten study techniques, including spaced repetition, the Pomodoro technique and PQ4R.
-- **Credits:** names the app and website teams. The app was made by Sejal Gupta and Arjun Kulkarni.
+- **Credits:** names the app and website teams. The app was made by Sejal Gupta. The website was made by Aditya Sharma, Raj Kumar and Arjun Kulkarni.
 
 ## Setup
 

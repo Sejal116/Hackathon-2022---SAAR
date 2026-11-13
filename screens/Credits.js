@@ -17,9 +17,9 @@ export default class Credits extends React.Component {
             </View>
           </View>
           <Text style={styles.label}>App</Text>
-          <Text style={styles.names}>Sejal Gupta and Arjun Kulkarni</Text>
+          <Text style={styles.names}>Sejal Gupta</Text>
           <Text style={styles.label}>Website</Text>
-          <Text style={styles.names}>Aditya Sharma and Raj Kumar</Text>
+          <Text style={styles.names}>Aditya Sharma, Raj Kumar{'\n'}and Arjun Kulkarni</Text>
           <Text style={styles.label}>Achievement</Text>
           <Text style={styles.names}>1st Place, High School{'\n'}Synthacks Hackathon 2022</Text>
         </ScrollView>
