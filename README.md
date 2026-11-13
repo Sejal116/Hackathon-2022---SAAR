@@ -1,32 +1,56 @@
-# 📱 SAAR Hackathon App – Timetable and Scheduling
+# eFFiciency: Study Productivity App
 
-A mobile application developed during a hackathon to **simplify personal scheduling** by consolidating multiple timetables into one interactive app.  
-The app integrates features such as a **Pomodoro timer, mood tracker, planner calendar, study notes, and productivity tips** to help users stay organized and focused.
+A mobile study-productivity app built during a hackathon in 2022. It brings a weekly timetable, a notes pad and study tips into one simple app.
 
----
+Built with React Native and Expo (JavaScript).
 
-## Tech Stack
+## Screenshots
 
-- **Languages:** JavaScript, CSS, HTML
-- **Frameworks/Libraries:** React Native, Expo  
+| Home | Planner |
+|------|---------|
+| ![Home](assets/screenshot.png) | ![Planner](timetable.png) |
 
----
+## Features
 
-## Key Highlights
+- **Home:** five buttons leading to each section of the app.
+- **Planner:** a Monday to Friday weekly timetable view with colour-coded class blocks. Tapping a block shows its details. The timetable currently shows sample data.
+- **Study Notes:** a plain text pad for quick notes.
+- **Tips:** ten study techniques, including spaced repetition, the Pomodoro technique and PQ4R.
+- **Focus:** screen reserved for a focus timer (not built yet).
+- **Credits:** names the app and website teams. The app was made by Sejal Gupta and Arjun Kulkarni.
 
-- Built the **core flow**, including timetable creation and editing, in [X hours/days]  
-- Designed UI and logic for **dynamic schedule conflict detection and notifications**  
-- Next Steps:  
-  - Integrate calendar syncing with **Google / Outlook**  
-  - Add **real-time collaboration** for group scheduling  
+## Setup
 
----
+Requires Node.js 16 or later and the Expo Go app on your phone.
 
-## Demo
+```
+git clone https://github.com/Sejal116/Hackathon-2022---SAAR.git
+cd Hackathon-2022---SAAR
+npm install
+npx expo start
+```
 
-| Home Screen | 
-|--------------|
-| ![screenshot](assets/screenshot.png) 
+Scan the QR code with Expo Go (Android) or the Camera app (iOS). The app targets Expo SDK 46, so very recent Expo Go versions may need `npx expo install --fix` first.
 
+## How it works
 
----
+```
+App.js              switch navigator that links all screens
+screens/
+  HomeScreen.js     menu with five buttons
+  Planner.js        weekly timetable (react-native-timetable), sample events array
+  StudyNotes.js     multiline text input
+  Tips.js           list of ten study techniques
+  Focus.js          placeholder for the timer
+  MoodTracker.js    credits screen (file name is from an earlier idea)
+```
+
+Navigation uses `createSwitchNavigator` from react-navigation. Each screen is a React class component, and the Planner reads an array of events, each with a title, start time, end time and location.
+
+## Limitations and next steps
+
+- Timetable entries are hard-coded. Next step: let users add, edit and delete classes, and save them on the device.
+- Notes are not saved between sessions. Next step: store them with AsyncStorage.
+- Add the Pomodoro timer on the Focus screen.
+- Add clash detection between overlapping classes and reminder notifications.
+- Add calendar sync with Google and Outlook.
