@@ -12,7 +12,7 @@ Built with React Native and Expo (JavaScript).
 
 ## Hackathon result
 
-This app was built for the Synthacks Hackathon 2022 at Greenwood High International School, Bangalore, held on 17 and 18 August 2022. It won **1st place** in the high school category.
+This app was built for the Synthacks Hackathon 2022 at Greenwood High International School, Bangalore, held on 17 and 18 August 2022. It won **1st place** in the high school category. The core flow of the app was built in 12 hours.
 
 | Award | Details |
 |-------|---------|
