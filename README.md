@@ -1,6 +1,6 @@
 # eFFiciency: Study Productivity App
 
-A mobile study-productivity app built during a hackathon in 2022. It brings a weekly timetable, a notes pad and study tips into one simple app.
+A mobile study-productivity app that won **1st place in the high school category at the Synthacks Hackathon 2022**. It brings a weekly timetable, a notes pad and study tips into one simple app.
 
 Built with React Native and Expo (JavaScript).
 
@@ -9,6 +9,12 @@ Built with React Native and Expo (JavaScript).
 | Home | Planner |
 |------|---------|
 | ![Home](assets/screenshot.png) | ![Planner](timetable.png) |
+
+## Hackathon result
+
+This app was built for the Synthacks Hackathon 2022 at Greenwood High International School, Bangalore, held on 17 and 18 August 2022. It won **1st place** and the high school trophy, and the school awarded a Certificate of Merit for 1st place, dated 18 August 2022.
+
+![Synthacks 2022 trophy and certificates](assets/synthacks-1st-place.jpg)
 
 ## Features
 
