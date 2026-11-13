@@ -4,6 +4,8 @@ import {
   StyleSheet,
   View,
   Alert,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 import TimeTableView, { genTimeBlock } from 'react-native-timetable';
 const events_data = [
@@ -63,7 +65,7 @@ const events_data = [
   },
 ];
 
-export default class App extends Component {
+export default class Planner extends Component {
   constructor(props) {
     super(props);
     this.numOfDays = 5;
@@ -75,12 +77,21 @@ export default class App extends Component {
   };
 
   onEventPress = (evt) => {
-    Alert.alert("onEventPress", JSON.stringify(evt));
+    Alert.alert(evt.title, evt.location);
   };
 
   render() {
     return (
       <SafeAreaView style={{flex: 1}}>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('HomeScreen');
+          }}>
+          <Image
+            style={styles.back}
+            source={require('../assets/backButton.png')}
+          />
+        </TouchableOpacity>
         <View style={styles.container}>
           <TimeTableView
             scrollViewRef={this.scrollViewRef}
@@ -101,6 +112,13 @@ export default class App extends Component {
 };
 
 const styles = StyleSheet.create({
+  back: {
+    width: 30,
+    height: 30,
+    marginTop: 30,
+    marginLeft: 10,
+    marginBottom: 10,
+  },
   headerStyle: {
     backgroundColor: '#81E1B8'
   },
