@@ -42,7 +42,7 @@ screens/
   StudyNotes.js     multiline text input
   Tips.js           list of ten study techniques
   Focus.js          placeholder for the timer
-  MoodTracker.js    credits screen (file name is from an earlier idea)
+  Credits.js        credits screen
 ```
 
 Navigation uses `createSwitchNavigator` from react-navigation. Each screen is a React class component, and the Planner reads an array of events, each with a title, start time, end time and location.
