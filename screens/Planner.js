@@ -1,129 +1,132 @@
 import React, { Component } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  Alert,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
-import TimeTableView, { genTimeBlock } from 'react-native-timetable';
-const events_data = [
-  {
-    title: "Math",
-    startTime: genTimeBlock("MON", 9),
-    endTime: genTimeBlock("MON", 10, 50),
-    location: "Classroom 403",
-    extra_descriptions: ["Kim", "Lee"],
-  },
-  {
-    title: "Math",
-    startTime: genTimeBlock("WED", 9),
-    endTime: genTimeBlock("WED", 10, 50),
-    location: "Classroom 403",
-    extra_descriptions: ["Kim", "Lee"],
-  },
-  {
-    title: "Physics",
-    startTime: genTimeBlock("MON", 11),
-    endTime: genTimeBlock("MON", 11, 50),
-    location: "Lab 404",
-    extra_descriptions: ["Einstein"],
-  },
-  {
-    title: "Physics",
-    startTime: genTimeBlock("WED", 11),
-    endTime: genTimeBlock("WED", 11, 50),
-    location: "Lab 404",
-    extra_descriptions: ["Einstein"],
-  },
-  {
-    title: "Mandarin",
-    startTime: genTimeBlock("TUE", 9),
-    endTime: genTimeBlock("TUE", 10, 50),
-    location: "Language Center",
-    extra_descriptions: ["Chen"],
-  },
-  {
-    title: "Japanese",
-    startTime: genTimeBlock("FRI", 9),
-    endTime: genTimeBlock("FRI", 10, 50),
-    location: "Language Center",
-    extra_descriptions: ["Nakamura"],
-  },
-  {
-    title: "Club Activity",
-    startTime: genTimeBlock("THU", 9),
-    endTime: genTimeBlock("THU", 10, 50),
-    location: "Activity Center",
-  },
-  {
-    title: "Club Activity",
-    startTime: genTimeBlock("FRI", 13, 30),
-    endTime: genTimeBlock("FRI", 14, 50),
-    location: "Activity Center",
-  },
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert, StyleSheet } from 'react-native';
+import Header from '../components/Header';
+import { colors, fonts } from '../theme';
+
+// Sample timetable. Replace these with your own classes.
+const SCHEDULE = [
+  { day: 'Monday', classes: [
+    { time: '09:00 - 10:50', title: 'Math', location: 'Classroom 403' },
+    { time: '11:00 - 11:50', title: 'Physics', location: 'Lab 404' },
+  ]},
+  { day: 'Tuesday', classes: [
+    { time: '09:00 - 10:50', title: 'Mandarin', location: 'Language Center' },
+  ]},
+  { day: 'Wednesday', classes: [
+    { time: '09:00 - 10:50', title: 'Math', location: 'Classroom 403' },
+    { time: '11:00 - 11:50', title: 'Physics', location: 'Lab 404' },
+  ]},
+  { day: 'Thursday', classes: [
+    { time: '09:00 - 10:50', title: 'Club Activity', location: 'Activity Center' },
+  ]},
+  { day: 'Friday', classes: [
+    { time: '09:00 - 10:50', title: 'Japanese', location: 'Language Center' },
+    { time: '13:30 - 14:50', title: 'Club Activity', location: 'Activity Center' },
+  ]},
+  { day: 'Saturday', classes: [] },
+  { day: 'Sunday', classes: [] },
 ];
 
 export default class Planner extends Component {
-  constructor(props) {
-    super(props);
-    this.numOfDays = 5;
-    this.pivotDate = genTimeBlock('mon');
-  }
-
-  scrollViewRef = (ref) => {
-    this.timetableRef = ref;
+  showClass = (c) => {
+    Alert.alert(c.title, c.time + '\n' + c.location);
   };
 
-  onEventPress = (evt) => {
-    Alert.alert(evt.title, evt.location);
-  };
+  renderDay = (d, wide) => (
+    <View key={d.day} style={[styles.card, wide && styles.wide]}>
+      <Text style={styles.day}>{d.day}:</Text>
+      <View style={styles.underline} />
+      {d.classes.length === 0 ? (
+        <Text style={styles.free}>Free day</Text>
+      ) : (
+        d.classes.map((c, i) => (
+          <TouchableOpacity key={i} onPress={() => this.showClass(c)}>
+            <Text style={styles.classTime}>{c.time}</Text>
+            <Text style={styles.classTitle}>{c.title}</Text>
+          </TouchableOpacity>
+        ))
+      )}
+    </View>
+  );
 
   render() {
+    const weekdays = SCHEDULE.slice(0, 6);
     return (
-      <SafeAreaView style={{flex: 1}}>
-        <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.navigate('HomeScreen');
-          }}>
-          <Image
-            style={styles.back}
-            source={require('../assets/backButton.png')}
-          />
-        </TouchableOpacity>
-        <View style={styles.container}>
-          <TimeTableView
-            scrollViewRef={this.scrollViewRef}
-            events={events_data}
-            pivotTime={17}
-            pivotEndTime={30}
-            pivotDate={this.pivotDate}
-            nDays={this.numOfDays}
-            onEventPress={this.onEventPress}
-            headerStyle={styles.headerStyle}
-            formatDateHeader="dddd"
-            locale="en"
-          />
-        </View>
-      </SafeAreaView>
+      <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.content}>
+          <Header navigation={this.props.navigation} title="Weekly Planner" />
+          <View style={styles.grid}>
+            {weekdays.map((d) => this.renderDay(d, false))}
+          </View>
+          <View style={styles.grid}>{this.renderDay(SCHEDULE[6], true)}</View>
+          <View style={[styles.card, styles.wide, { marginHorizontal: 16 }]}>
+            <Text style={styles.day}>Weekly Priorities:</Text>
+            <View style={styles.underline} />
+            <TextInput
+              style={styles.input}
+              multiline={true}
+              placeholder="What matters most this week?"
+              placeholderTextColor="#8A86B5"
+            />
+          </View>
+        </ScrollView>
+      </View>
     );
   }
-};
+}
 
 const styles = StyleSheet.create({
-  back: {
-    width: 30,
-    height: 30,
-    marginTop: 30,
-    marginLeft: 10,
-    marginBottom: 10,
+  container: { flex: 1, backgroundColor: colors.navy },
+  content: { paddingBottom: 40 },
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
   },
-  headerStyle: {
-    backgroundColor: '#81E1B8'
+  card: {
+    width: '48%',
+    minHeight: 170,
+    backgroundColor: colors.pink,
+    padding: 10,
+    marginBottom: 14,
   },
-  container: {
-    flex: 1,
-    backgroundColor: '#F8F8F8',
+  wide: { width: '100%' },
+  day: {
+    fontFamily: fonts.script,
+    fontSize: 30,
+    color: colors.navy,
+    textAlign: 'center',
+  },
+  underline: {
+    height: 1,
+    backgroundColor: colors.navy,
+    marginHorizontal: 30,
+    marginBottom: 8,
+  },
+  free: {
+    fontFamily: fonts.serifMedium,
+    fontSize: 14,
+    color: '#8A86B5',
+    textAlign: 'center',
+    marginTop: 10,
+  },
+  classTime: {
+    fontFamily: fonts.serifMedium,
+    fontSize: 12,
+    color: '#5B5890',
+    marginTop: 6,
+  },
+  classTitle: {
+    fontFamily: fonts.serif,
+    fontSize: 16,
+    color: colors.navy,
+  },
+  input: {
+    minHeight: 90,
+    fontFamily: fonts.serifMedium,
+    fontSize: 16,
+    color: colors.navy,
+    textAlignVertical: 'top',
   },
 });
