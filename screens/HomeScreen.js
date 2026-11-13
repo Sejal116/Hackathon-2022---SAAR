@@ -1,32 +1,35 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, ScrollView, StyleSheet } from 'react-native';
+import { colors, fonts, titleShadow } from '../theme';
+
+const ITEMS = [
+  { label: 'Planner', screen: 'Planner', circle: colors.cream },
+  { label: 'Study Notes', screen: 'StudyNotes', circle: colors.rose },
+  { label: 'Focus', screen: 'Focus', circle: colors.salmon },
+  { label: 'Tips', screen: 'Tips', circle: colors.cream },
+  { label: 'Credits', screen: 'Credits', circle: colors.rose },
+];
 
 export default class HomeScreen extends React.Component {
-  changeScreen = (screen) => {
-    this.props.navigation.navigate(screen);
-  };
-
   render() {
     return (
       <View style={styles.app}>
-        <View style={styles.titleBar}>
+        <ScrollView contentContainerStyle={styles.content}>
           <Text style={styles.titleText}>eFFiciency</Text>
-        </View>
-        <TouchableOpacity style={styles.buttonStyle} onPress={() => this.changeScreen('Credits')}>
-          <Text style={styles.textStyle}>Credits</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStyle} onPress={() => this.changeScreen('Focus')}>
-          <Text style={styles.textStyle}>Focus</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStyle} onPress={() => this.changeScreen('Planner')}>
-          <Text style={styles.textStyle}>Planner</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStyle} onPress={() => this.changeScreen('StudyNotes')}>
-          <Text style={styles.textStyle}>Study Notes</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonStyle} onPress={() => this.changeScreen('Tips')}>
-          <Text style={styles.textStyle}>Tips</Text>
-        </TouchableOpacity>
+          <Text style={styles.subtitle}>The Ultimate Student Planner</Text>
+          <Text style={styles.index}>INDEX</Text>
+          {ITEMS.map((item) => (
+            <TouchableOpacity
+              key={item.screen}
+              style={styles.row}
+              onPress={() => this.props.navigation.navigate(item.screen)}>
+              <View style={[styles.circle, { backgroundColor: item.circle }]} />
+              <View style={styles.bar}>
+                <Text style={styles.barText}>{item.label}</Text>
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
       </View>
     );
   }
@@ -35,32 +38,57 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   app: {
     flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
+    backgroundColor: colors.navy,
   },
-  titleBar: {
-    justifyContent: 'center',
+  content: {
     alignItems: 'center',
+    paddingTop: 60,
+    paddingBottom: 40,
   },
   titleText: {
-    fontSize: 50,
-    fontWeight: 'bold',
-    color: 'black',
-    marginTop: 50,
-    marginBottom: 20,
+    fontFamily: fonts.title,
+    fontSize: 54,
+    color: colors.white,
+    ...titleShadow,
   },
-  buttonStyle: {
-    borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  subtitle: {
+    fontFamily: fonts.script,
+    fontSize: 26,
+    color: colors.white,
+    marginTop: 4,
+  },
+  index: {
+    fontFamily: fonts.title,
+    fontSize: 30,
+    color: colors.white,
+    marginTop: 26,
+    marginBottom: 22,
+    ...titleShadow,
+  },
+  row: {
     width: 300,
-    height: 40,
-    borderRadius: 80,
-    marginBottom: 40,
+    height: 90,
+    justifyContent: 'center',
+    marginBottom: 14,
   },
-  textStyle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#D11583',
+  circle: {
+    position: 'absolute',
+    alignSelf: 'center',
+    width: 86,
+    height: 86,
+    borderRadius: 43,
+  },
+  bar: {
+    height: 52,
+    backgroundColor: '#000000',
+    borderWidth: 2,
+    borderColor: colors.white,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  barText: {
+    fontFamily: fonts.script,
+    fontSize: 32,
+    color: '#DDDDDD',
   },
 });

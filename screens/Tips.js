@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import Header from '../components/Header';
+import { colors, fonts } from '../theme';
 
 const TIPS = [
   'Study smarter, not harder',
@@ -18,21 +20,13 @@ export default class Tips extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.navigate('HomeScreen');
-          }}>
-          <Image
-            style={styles.back}
-            source={require('../assets/backButton.png')}
-          />
-        </TouchableOpacity>
-        <Text style={styles.head}>Top Ten Tips!</Text>
-        <ScrollView contentContainerStyle={styles.list}>
+        <ScrollView contentContainerStyle={styles.content}>
+          <Header navigation={this.props.navigation} title="Top Ten Tips!" />
           {TIPS.map((tip, i) => (
-            <Text key={i} style={styles.textstyle}>
-              #{i + 1} - {tip}
-            </Text>
+            <View key={i} style={styles.card}>
+              <Text style={styles.number}>#{i + 1}</Text>
+              <Text style={styles.tip}>{tip}</Text>
+            </View>
           ))}
         </ScrollView>
       </View>
@@ -41,33 +35,27 @@ export default class Tips extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container: { flex: 1, backgroundColor: colors.navy },
+  content: { paddingBottom: 40 },
+  card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.pink,
+    marginHorizontal: 16,
+    marginBottom: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+  },
+  number: {
+    fontFamily: fonts.script,
+    fontSize: 34,
+    color: colors.navy,
+    width: 58,
+  },
+  tip: {
     flex: 1,
-    backgroundColor: 'white',
-  },
-  list: {
-    paddingHorizontal: 12,
-    paddingBottom: 30,
-  },
-  textstyle: {
-    fontSize: 20,
-    textAlign: 'left',
-    fontWeight: 'bold',
-    marginTop: 20,
-  },
-  back: {
-    width: 30,
-    height: 30,
-    marginTop: 40,
-    marginLeft: 10,
-    marginBottom: 28,
-  },
-  head: {
-    textAlign: 'center',
-    fontSize: 40,
-    color: 'black',
-    fontWeight: 'bold',
-    backgroundColor: 'lightpink',
-    marginBottom: 10,
+    fontFamily: fonts.serif,
+    fontSize: 16,
+    color: colors.navy,
   },
 });
